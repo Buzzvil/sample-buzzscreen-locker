@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath('com.android.tools.build:gradle:2.3.3')
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "http://dl.appnext.com/" }
+        maven { url 'https://dl.bintray.com/buzzvil/maven/' }
+    }
+}
+
+subprojects {
+    tasks.withType(Javadoc).all { enabled = false }
+}
+
+ext {
+    compileSdkVersionValue = 25
+    buildToolVersionValue = '25.0.2'
+    buildTargetSdkVersionValue = 23
+}

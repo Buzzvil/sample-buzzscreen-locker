@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    jcenter()
+    maven {
+        url 'https://dl.bintray.com/outbrainmobile/obsdk'
+        credentials {
+            username = "OutbrainPublishers"
+            password = "adb1c1ae22255101ec2cf56f435a85879a349e5c"
+        }
+    }
+    maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist" }
+}
+
+android {
+    compileSdkVersion compileSdkVersionValue
+    buildToolsVersion buildToolVersionValue
+
+    defaultConfig {
+        applicationId "com.buzzvil.buzzscreen.sample.locker"
+        minSdkVersion 21
+        targetSdkVersion buildTargetSdkVersionValue
+        versionCode 1
+        versionName "1.1"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    buildToolsVersion '25.0.0'
+}
+
+dependencies {
+    compile 'com.buzzvil.buzzscreen:buzzscreen-sdk:+'
+    compile 'com.android.support:multidex:1.0.1'
+}
