@@ -1,4 +1,4 @@
-# Buzzscreen SDK for slidejoy publishers
+# Buzzscreen SDK for publishers
 
 - Buzzvil's library for integrating BuzzScreen with Android apps.
 - Requires Android version 4.1 (API level 16) or newer.
@@ -30,6 +30,7 @@ dependencies {
 #### 2.1. Init SDK
 
 1. Add `BuzzScreen.getInstance().init("APP_KEY", this, CustomLockActivity.class)` to onCreate in your Application class.
+CustomLockActivity is optional: can be NULL
 2. Don't use multi threading or call from outside of onCreate() because SDK needs the application context at the first time.
 
 ```java
@@ -40,28 +41,6 @@ public class SampleApplication extends Application {
 		super.onCreate();
 		BuzzScreen.getInstance().init("APP_KEY", this, CustomLockActivity.class);
 	}
-}
-```
-
-#### 2.2. Register callback for impression tracking (Optional)
-
-```java
-// An activity class which inherited the SimpleLockerActivity
-@Override
-public void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-
-	setOnTrackingListener(new OnTrackingListener() {
-		@Override
-		public void onImpression(Bundle bundle) {
-			// ref)https://docs.google.com/spreadsheets/d/12pWkgO9i-FnH7-6AS2inlWiLeRAfK5SP8U5ATXQX3sU/edit?usp=sharing
-		}
-
-		@Override
-		public void onClick(Bundle bundle) {
-			// ref)https://docs.google.com/spreadsheets/d/12pWkgO9i-FnH7-6AS2inlWiLeRAfK5SP8U5ATXQX3sU/edit?usp=sharing
-		}
-	});
 }
 ```
 
@@ -92,7 +71,7 @@ BuzzScreen.getInstance().setUserProfile(profile);
 #### 3.2. Set BuzzOptions
 
 - Use News
-- Use Notification and Shortcuts
+- Use Notification and Shortcuts (deprecated)
 - Default lock images resources / Use default lock only
 	
 ```java
@@ -102,16 +81,9 @@ defaultCampaign1.setCreativeWidth(640);
 defaultCampaign1.setClickUrl("about:blank");
 defaultCampaign1.setResourceId(R.drawable.default_lock_sdk);
 
-BuzzOptions.DefaultCampaign defaultCampaign2 = new BuzzOptions.DefaultCampaign();
-defaultCampaign2.setCreativeHeight(790);
-defaultCampaign2.setCreativeWidth(640);
-defaultCampaign2.setClickUrl("about:blank");
-defaultCampaign2.setResourceId(R.drawable.default_lock_sample);
-
 BuzzScreen.getInstance().setOptions(
         new BuzzOptions.Builder().useNews(switchNews.isChecked())
                 .setDefaultCampaign(defaultCampaign1)
-                .addDefaultCampaign(defaultCampaign2)
                 .setDebugMode(1).build());
 						
 ```
@@ -128,4 +100,33 @@ BuzzScreen.getInstance().activate();
 BuzzScreen.getInstance().deactivate();
 ```
 
-### 4. Proguard
+### 4. CustomLockerActivity 
+Need to define this to receive impression/click data
+[CustomLockerActivity](https://github.com/Buzzvil/sample-buzzscreen-locker/blob/master/app/src/main/java/com/buzzvil/buzzscreen/sample/locker/CustomLockActivity.java)
+
+#### 4.1. Register callback for impression tracking (Optional)
+
+```java
+// An activity class which inherited the CustomLockerActivity
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+
+	setOnTrackingListener(new OnTrackingListener() {
+		@Override
+		public void onImpression(Bundle bundle) {
+			// ref)https://docs.google.com/spreadsheets/d/12pWkgO9i-FnH7-6AS2inlWiLeRAfK5SP8U5ATXQX3sU/edit?usp=sharing
+			printBundle(bundle);
+		}
+
+		@Override
+		public void onClick(Bundle bundle) {
+			// ref)https://docs.google.com/spreadsheets/d/12pWkgO9i-FnH7-6AS2inlWiLeRAfK5SP8U5ATXQX3sU/edit?usp=sharing
+			printBundle(bundle);
+		}
+	});
+}
+```
+
+### 5. Proguard
+Automated
