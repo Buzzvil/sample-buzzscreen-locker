@@ -2,13 +2,6 @@ apply plugin: 'com.android.application'
 
 repositories {
     jcenter()
-    maven {
-        url 'https://dl.bintray.com/outbrainmobile/obsdk'
-        credentials {
-            username = "OutbrainPublishers"
-            password = "adb1c1ae22255101ec2cf56f435a85879a349e5c"
-        }
-    }
     maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist" }
 }
 
