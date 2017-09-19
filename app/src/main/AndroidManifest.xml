@@ -33,6 +33,11 @@
 					android:host="lock"/>
 			</intent-filter>
 		</activity>
+
+		<meta-data
+			android:name="app_license"
+			android:value="[YOUR_BAIDU_APP_LICENSE]" />
+
 	</application>
 
 </manifest>

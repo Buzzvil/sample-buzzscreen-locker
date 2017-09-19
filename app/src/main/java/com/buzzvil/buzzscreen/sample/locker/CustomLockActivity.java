@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.bluejaywireless.myrewards.R;
 import com.buzzvil.buzzscreen.sdk.model.object.Campaign;
 import com.buzzvil.buzzscreen.sdk.ui.lock.BaseLockerActivity;
 

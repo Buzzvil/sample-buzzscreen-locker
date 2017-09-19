@@ -11,7 +11,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url "http://dl.appnext.com/" }
-        maven { url 'https://dl.bintray.com/buzzvil/maven/' }
+        maven { url 'https://dl.bintray.com/buzzvil/test/' }
     }
 }
 

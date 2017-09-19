@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import com.bluejaywireless.myrewards.R;
 import com.buzzvil.buzzscreen.sdk.BuzzIntent;
 import com.buzzvil.buzzscreen.sdk.BuzzOptions;
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
@@ -33,11 +34,11 @@ public class SampleActivity extends Activity implements CompoundButton.OnChecked
 		buttonStart.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				UserProfile profile = new UserProfile.Builder("TempUser_" + random.nextInt(100))
-//						.setHmac("srLzQ9jziHy2mJH6HSRehQ==")        // Optional
-//						.setBirthYear(1984)
-						.setBirthday("1984-06-07")                    // Optional
-						.setGender(random.nextBoolean() ? UserProfile.USER_GENDER_MALE : UserProfile.USER_GENDER_FEMALE)
+				UserProfile profile = new UserProfile.Builder("10000")
+						//.setHmac("DnxyJVcRxxxx/SPEoLSVuRxtV4wRUj8SiQXoswRu3n8=")        // Optional
+						.setBirthYear(1980)
+						//.setBirthday("11-11-1980")                    // Optional
+						.setGender(UserProfile.USER_GENDER_MALE)
 						.build();
 				// In order to apply options.
 				onCheckedChanged(null, false);
