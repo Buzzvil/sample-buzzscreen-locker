@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import com.bluejaywireless.myrewards.R;
 import com.buzzvil.buzzscreen.sdk.BuzzIntent;
 import com.buzzvil.buzzscreen.sdk.BuzzOptions;
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
@@ -68,14 +67,10 @@ public class SampleActivity extends Activity implements CompoundButton.OnChecked
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		BuzzOptions.DefaultCampaign defaultCampaign1 = new BuzzOptions.DefaultCampaign();
-		defaultCampaign1.setCreativeHeight(790);
-		defaultCampaign1.setCreativeWidth(640);
 		defaultCampaign1.setClickUrl("about:blank");
 		defaultCampaign1.setResourceId(R.drawable.default_lock_sdk);
 
 		BuzzOptions.DefaultCampaign defaultCampaign2 = new BuzzOptions.DefaultCampaign();
-		defaultCampaign2.setCreativeHeight(790);
-		defaultCampaign2.setCreativeWidth(640);
 		defaultCampaign2.setClickUrl("about:blank");
 		defaultCampaign2.setResourceId(R.drawable.default_lock_sample);
 

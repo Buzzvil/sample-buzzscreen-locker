@@ -1,11 +1,13 @@
 package com.buzzvil.buzzscreen.sample.locker;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.bluejaywireless.myrewards.R;
+import com.buzzvil.buzzscreen.sample.locker.tutorial.LockTutorialFragment;
 import com.buzzvil.buzzscreen.sdk.model.object.Campaign;
 import com.buzzvil.buzzscreen.sdk.ui.lock.BaseLockerActivity;
 
@@ -19,6 +21,8 @@ import java.util.Calendar;
  */
 public class CustomLockActivity extends BaseLockerActivity {
 	private static final String TAG = CustomLockActivity.class.getSimpleName();
+
+	public static final String KEY_LOCK_TUTORIAL_SHOWN = "KEY_LOCK_TUTORIAL_SHOWN";
 
 	TextView tvTime;
 	TextView tvAmPm;
@@ -45,6 +49,8 @@ public class CustomLockActivity extends BaseLockerActivity {
 		tvAmPm = (TextView)findViewById(R.id.locker_am_pm);
 		tvDate = (TextView)findViewById(R.id.locker_date);
 		tvTime.setTypeface(Typeface.create("sans-serif-thin", Typeface.NORMAL));
+
+		startTutorialIfNeeded();
 	}
 
 	void printBundle(Bundle bundle) {
@@ -59,21 +65,12 @@ public class CustomLockActivity extends BaseLockerActivity {
 	}
 
 	@Override
-	protected void onStart() {
-		super.onStart();
-		Log.d(TAG, "onStart()");
-	}
-
-	@Override
-	protected void onStop() {
-		Log.d(TAG, "onStop()");
-		super.onStop();
-	}
-
-	@Override
 	protected void onCurrentCampaignUpdated(Campaign campaign) {
-//		// 현재 보여지고 있는 캠페인이 업데이트 될때 호출된다.
-//		// 현재 캠페인에 따라 UI를 변화시키고 싶으면 여기서 작업하면 된다.
+		// 현재 보여지고 있는 캠페인이 업데이트 될때 호출된다.
+		// 현재 캠페인에 따라 UI를 변화시키고 싶으면 여기서 작업하면 된다.
+
+		// Called when the currently viewed campaign is updated.
+		// If you want to change the UI according to your current campaign, you can work here.
 	}
 
 	@Override
@@ -92,5 +89,25 @@ public class CustomLockActivity extends BaseLockerActivity {
 		String dayName = symbols.getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
 		String date = String.format("%d월 %d일", cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
 		tvDate.setText(String.format("%s %s", date, dayName));
+	}
+
+	private void startTutorialIfNeeded() {
+		Context context = getApplicationContext();
+		final SharedPreferences pref = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+		if (pref.getBoolean(KEY_LOCK_TUTORIAL_SHOWN, false) == false) {
+			enableCampaigns(false);	// show default(offline) lockscreen
+
+			LockTutorialFragment tutorialFragment = new LockTutorialFragment();
+			tutorialFragment.setOnTutorialListener(new LockTutorialFragment.OnTutorialListner() {
+				@Override
+				public void onFinish() {
+					pref.edit().putBoolean(KEY_LOCK_TUTORIAL_SHOWN, true).apply();
+				}
+			});
+			getSupportFragmentManager()
+					.beginTransaction()
+					.replace(android.R.id.content, tutorialFragment)
+					.commitAllowingStateLoss();
+		}
 	}
 }

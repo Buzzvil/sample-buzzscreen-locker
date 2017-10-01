@@ -24,6 +24,6 @@ public class SampleApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		BuzzScreen.getInstance().init("[YOUR_BUZZSCREEN_APP_KEY]", this, CustomLockActivity.class);
+		BuzzScreen.getInstance().init("[YOUR_APP_KEY]", this, CustomLockActivity.class);
 	}
 }
