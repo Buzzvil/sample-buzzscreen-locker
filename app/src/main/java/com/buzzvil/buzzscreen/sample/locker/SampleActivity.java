@@ -11,6 +11,7 @@ import com.buzzvil.buzzscreen.sdk.BuzzIntent;
 import com.buzzvil.buzzscreen.sdk.BuzzOptions;
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
 import com.buzzvil.buzzscreen.sdk.UserProfile;
+import com.buzzvil.buzzscreen.sdk.service.LockerServiceNotificationConfig;
 
 import java.util.Random;
 
@@ -78,6 +79,7 @@ public class SampleActivity extends Activity implements CompoundButton.OnChecked
 				new BuzzOptions.Builder().useNews(switchNews.isChecked())
 						.setDefaultCampaign(defaultCampaign1)
 						.addDefaultCampaign(defaultCampaign2)
-						.setDebugMode(1).build());
+						.setDebugMode(0).build());
+		// BuzzScreen.runInBackground(true);
 	}
 }
