@@ -124,7 +124,7 @@ public class CustomLockActivity extends BaseLockerActivity {
 			});
 			getSupportFragmentManager()
 					.beginTransaction()
-					.replace(android.R.id.content, tutorialFragment)
+					.replace(getRootView().getId(), tutorialFragment)
 					.commitAllowingStateLoss();
 		}
 	}
