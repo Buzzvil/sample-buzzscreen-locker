@@ -3,7 +3,9 @@ package com.buzzvil.buzzscreen.sample.locker;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -12,7 +14,10 @@ import com.buzzvil.buzzscreen.sdk.model.object.Campaign;
 import com.buzzvil.buzzscreen.sdk.ui.lock.BaseLockerActivity;
 
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * CustomLockActivity.java
@@ -75,20 +80,33 @@ public class CustomLockActivity extends BaseLockerActivity {
 
 	@Override
 	protected void onTimeUpdated(Calendar cal) {
+		Date now = cal.getTime();
 		// set time
-		int hour = cal.get(Calendar.HOUR);
-		String time = String.format("%d:%02d", hour == 0 ? 12 : hour, cal.get(Calendar.MINUTE));
+		String time = new SimpleDateFormat("h:mm", Locale.getDefault()).format(now);
 		tvTime.setText(time);
 
 		// set am pm
-		String am_pm = String.format("%s", cal.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM");
+		String am_pm = new SimpleDateFormat("aa", Locale.US).format(now);
 		tvAmPm.setText(am_pm);
 
 		// set date
-		DateFormatSymbols symbols = new DateFormatSymbols();
-		String dayName = symbols.getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
-		String date = String.format("%d월 %d일", cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
-		tvDate.setText(String.format("%s %s", date, dayName));
+		String dateTemplate;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+			dateTemplate = DateFormat.getBestDateTimePattern(Locale.getDefault(), "E d MMM");
+		} else {
+			Locale locale = Locale.getDefault();
+			if (locale.equals(Locale.KOREA)) {
+				dateTemplate = "MMM d일 EEEE";
+			} else if (locale.equals(Locale.JAPAN)) {
+				dateTemplate = "MMM d日 EEEE";
+			} else if (locale.equals(Locale.US)) {
+				dateTemplate = "E, MMM d";
+			} else {
+				dateTemplate = "E, d MMM";
+			}
+		}
+		String date = new SimpleDateFormat(dateTemplate, Locale.getDefault()).format(now);
+		tvDate.setText(date);
 	}
 
 	private void startTutorialIfNeeded() {
