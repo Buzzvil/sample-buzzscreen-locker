@@ -1,7 +1,5 @@
 package com.buzzvil.buzzscreen.sample.locker.tutorial;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,9 +26,6 @@ import java.util.List;
  */
 public class LockTutorialFragment extends Fragment {
 	List<Integer> guideResources = new ArrayList<>(Arrays.asList(R.drawable.lockscreen_tutorial_2, R.drawable.lockscreen_tutorial_3));
-
-	public static final String KEY_LOCK_TUTORIAL_SHOWN = "KEY_LOCK_TUTORIAL_SHOWN";
-
 	public interface OnTutorialListner {
 		void onFinish();
 	}
@@ -105,9 +100,6 @@ public class LockTutorialFragment extends Fragment {
 
 	void showNextGuide() {
 		if (guideResources.isEmpty()) {
-			SharedPreferences pref = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
-			pref.edit().putBoolean(KEY_LOCK_TUTORIAL_SHOWN, true).apply();
-
 			if (this.onTutorialListner != null) {
 				this.onTutorialListner.onFinish();
 			}
