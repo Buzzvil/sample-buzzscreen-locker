@@ -61,7 +61,7 @@ public class SampleApplication extends Application {
 UserProfile profile = new UserProfile.Builder("TempUser_" + random.nextInt(100))
 	.setBirthYear(1970 + random.nextInt(20))
 	.setGender(random.nextBoolean() ? UserProfile.USER_GENDER_MALE : UserProfile.USER_GENDER_FEMALE)
-	.setHmac("ABCDE")
+	.setHmac("ABCDE")  // Hmac is a S2S security option.
 	.setBirthday("1984-06-07")
 	.build();
 						
@@ -76,15 +76,13 @@ BuzzScreen.getInstance().setUserProfile(profile);
 	
 ```java
 BuzzOptions.DefaultCampaign defaultCampaign1 = new BuzzOptions.DefaultCampaign();
-defaultCampaign1.setCreativeHeight(790);
-defaultCampaign1.setCreativeWidth(640);
-defaultCampaign1.setClickUrl("about:blank");
+defaultCampaign1.setClickUrl("[URL_FOR_LANDING]");
 defaultCampaign1.setResourceId(R.drawable.default_lock_sdk);
 
 BuzzScreen.getInstance().setOptions(
         new BuzzOptions.Builder().useNews(switchNews.isChecked())
                 .setDefaultCampaign(defaultCampaign1)
-                .setDebugMode(1).build());
+                .build());
 						
 ```
 
