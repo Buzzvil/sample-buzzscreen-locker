@@ -24,3 +24,4 @@ ext {
     buildToolVersionValue = '25.0.2'
     buildTargetSdkVersionValue = 23
 }
+

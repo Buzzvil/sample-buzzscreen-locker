@@ -26,7 +26,7 @@
 			android:paddingBottom="10dp"
 			android:paddingLeft="20dp"
 			android:paddingRight="20dp"
-			android:background="@drawable/bg_selectable_green"
+			android:background="@drawable/bg_selectable_white"
 			android:contentDescription="HELVETICA_NEUE_MEDIUM"
 			android:text="@string/tutorial_button_got_it"/>
 </FrameLayout>

@@ -1,66 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-	<style name="Theme.NoTitleBar" parent="@android:style/Theme.NoTitleBar"/>
-
-	<style name="Theme.SlideActionBar.TextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-		<item name="android:textColor">@color/white</item>
+<resources>
+	<style name="Theme.Lockscreen" parent="Theme.Buzzscreen.Lockscreen">
+		<item name="bsColorPrimary">#000000</item>
+		<item name="bsColorAccentLight">#797979</item>
+		<item name="bsColorAccent">#353942</item>
+		<item name="bsColorAccentDark">#252932</item>
 	</style>
-
-	<style name="Theme.SlideActionBar" parent="Widget.AppCompat.ActionBar">
-		<item name="android:background">@color/actionbar_background</item>
-		<item name="android:titleTextStyle" tools:ignore="NewApi">@style/Theme.SlideActionBar.TextStyle</item>
-		<item name="android:icon">@android:color/transparent</item>
-		<item name="android:actionBarItemBackground" tools:ignore="NewApi">@drawable/action_bar_top_level_tab_bg</item>
-
-		<item name="background">@color/actionbar_background</item>
-		<item name="titleTextStyle">@style/Theme.SlideActionBar.TextStyle</item>
-		<item name="actionBarItemBackground">@drawable/action_bar_top_level_tab_bg</item>
-		<item name="icon">@android:color/transparent</item>
-		<!--<item name="height">52dip</item>-->
-	</style>
-
-	<style name="Theme.Buzzscreen" parent="Theme.AppCompat.Light.DarkActionBar">
-		<item name="android:actionBarStyle" tools:ignore="NewApi">@style/Theme.SlideActionBar</item>
-		<item name="android:actionMenuTextColor" tools:ignore="NewApi">@drawable/action_bar_text_selector</item>
-
-		<item name="actionMenuTextColor">@drawable/action_bar_text_selector</item>
-		<item name="actionBarStyle">@style/Theme.SlideActionBar</item>
-
-		<item name="colorPrimary">@color/slide_dark_blue</item>
-		<item name="colorPrimaryDark">#252932</item>
-		<item name="android:colorPrimary" tools:ignore="NewApi">@color/slide_dark_blue</item>
-		<item name="android:colorPrimaryDark" tools:ignore="NewApi">#252932</item>
-		<item name="android:windowContentOverlay">@null</item>
-		<item name="android:textColorSecondary">@color/slide_gray</item>
-	</style>
-
-	<style name="Theme.Buzzscreen.Toolbar" parent="Theme.Buzzscreen">
-		<item name="android:windowNoTitle">true</item>
-		<item name="windowNoTitle">true</item>
-		<item name="android:windowActionBar">false</item>
-		<item name="windowActionBar">false</item>
-		<item name="android:windowActionModeOverlay">true</item>
-		<item name="windowActionModeOverlay">true</item>
-	</style>
-
-	<style name="Theme.Buzzscreen.News" parent="Theme.Buzzscreen.Toolbar">
-		<item name="colorPrimary">@color/black</item>
-		<item name="colorPrimaryDark">#111111</item>
-		<item name="android:colorPrimary" tools:ignore="NewApi">@color/black</item>
-		<item name="android:colorPrimaryDark" tools:ignore="NewApi">#111111</item>
-	</style>
-
-	<style name="Theme.Lockscreen" parent="Theme.Buzzscreen.Toolbar">
-	<item name="colorPrimary">@color/black</item>
-	<item name="colorPrimaryDark">#111111</item>
-	<item name="android:colorPrimary" tools:ignore="NewApi">@color/black</item>
-	<item name="android:colorPrimaryDark" tools:ignore="NewApi">#111111</item>
-	<item name="android:windowBackground">@android:color/transparent</item>
-	<item name="android:colorBackgroundCacheHint">@null</item>
-	<item name="android:windowIsTranslucent">true</item>
-	<item name="android:windowAnimationStyle">@android:style/Animation</item>
-
-</style>
-
 </resources>

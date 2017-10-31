@@ -8,12 +8,13 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.buzzvil.buzzscreen.sample.locker.tutorial.LockTutorialFragment;
 import com.buzzvil.buzzscreen.sdk.model.object.Campaign;
 import com.buzzvil.buzzscreen.sdk.ui.lock.BaseLockerActivity;
+import com.buzzvil.buzzscreen.sdk.ui.lock.widget.OnSwipeListener;
 
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,12 +42,27 @@ public class CustomLockActivity extends BaseLockerActivity {
 		setOnTrackingListener(new OnTrackingListener() {
 			@Override
 			public void onImpression(Bundle bundle) {
+				if (bundle.getInt("id") <= 0) {
+					Toast.makeText(getBaseContext(), "No ads", Toast.LENGTH_SHORT).show();
+				}
 				printBundle(bundle);
 			}
 
 			@Override
 			public void onClick(Bundle bundle) {
 				printBundle(bundle);
+			}
+		});
+
+		getSlider().setOnSwipeListener(new OnSwipeListener() {
+			@Override
+			public void onLeft() {
+				landing();
+			}
+
+			@Override
+			public void onRight() {
+				unlock();
 			}
 		});
 
