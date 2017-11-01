@@ -31,8 +31,7 @@ android {
 }
 
 dependencies {
-    compile 'com.buzzvil.buzzscreen:buzzscreen-sdk:+'   // lastest stable version: 1.9.6
+    // ./gradlew build --refresh-dependencies
+    compile 'com.buzzvil.buzzscreen:buzzscreen-sdk:+'   // lastest stable version: 1.9.7
     compile 'com.android.support:multidex:1.0.1'
 }
-
-// ./gradlew build --refresh-dependencies

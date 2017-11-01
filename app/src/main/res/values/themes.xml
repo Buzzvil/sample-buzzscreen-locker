@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+
+<resources xmlns:ns1="http://schemas.android.com/tools">
+	<style name="Theme.App" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/bs_primary</item>
+		<item name="colorPrimaryDark">@color/bs_primary_dark</item>
+		<item name="android:colorPrimary" ns1:ignore="NewApi">@color/bs_primary</item>
+		<item name="android:colorPrimaryDark" ns1:ignore="NewApi">@color/bs_primary_dark</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:textColorSecondary">@color/bs_secondary_text</item>
+	</style>
+
 	<style name="Theme.Lockscreen" parent="Theme.Buzzscreen.Lockscreen">
 		<item name="bsColorPrimary">#000000</item>
 		<item name="bsColorAccentLight">#797979</item>
