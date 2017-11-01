@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.buzzvil.buzzscreen.sample.locker"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion buildTargetSdkVersionValue
         versionCode 1
         versionName "1.1"
