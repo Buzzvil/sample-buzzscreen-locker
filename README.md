@@ -11,6 +11,9 @@
 allprojects {
     repositories {
         jcenter()
+	maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist" }
+        maven { url "http://dl.appnext.com/" }
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
         maven { url 'https://dl.bintray.com/buzzvil/maven/' }
     }
 }
